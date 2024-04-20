@@ -68,7 +68,7 @@ public class Controller {
 
     }
 
-    @PostMapping("/missionCreate/{missionDays}/{mission}/{crew}")
+    @GetMapping("/missionCreate/{missionDays}/{mission}/{crew}")
     public String createMission(@PathVariable String mission,
                                 @PathVariable int missionDays,
                                 @PathVariable int crew) {
@@ -96,7 +96,7 @@ public class Controller {
         return "OK";
     }
 
-    @PostMapping("/saveAstronauts")
+    @GetMapping("/saveAstronauts")
     public String saveAstronauts() throws JsonProcessingException {
         String apiUrl = "http://api.open-notify.org/astros.json";
 
