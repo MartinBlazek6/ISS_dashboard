@@ -15,10 +15,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
@@ -36,6 +33,26 @@ public class Controller {
     private final CraftRepository craftRepository;
     private final CraftMapper craftMapper;
 
+
+    @GetMapping("/maping/{name}/{lastName}")
+    public Astronaut skuskaMaping(@PathVariable String name,
+                               @PathVariable String lastName){
+        Astronaut astronaut = Astronaut.builder().firstName(name).lastName(lastName).build();
+//        String name = "Martin";
+//        String lastName = " Blazek";
+        return astronaut;
+    }
+
+    @GetMapping("/maping2")
+    public String skuskaMaping2(@RequestParam String name,
+                               @RequestParam(required = false) String lastName){
+        if (lastName == null){
+            lastName = "Mrkvicka";
+        }
+//        String name = "Martin";
+//        String lastName = " Blazek";
+        return name.concat(" " + lastName);
+    }
 
     @GetMapping("/find/{name}/{lastName}")
     public String findByName(@PathVariable String name,
